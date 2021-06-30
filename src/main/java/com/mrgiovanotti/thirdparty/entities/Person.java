@@ -22,7 +22,7 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "identification_number")
+	@Column(name = "identification_number", unique = true)
 	private String identificationNumber;
 
 	private String name;
@@ -34,6 +34,10 @@ public class Person {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Neighborhood neighborhood;
+
+	public Person() {
+
+	}
 
 	public Person(PersonDTO personDTO) {
 		id = personDTO.getId();

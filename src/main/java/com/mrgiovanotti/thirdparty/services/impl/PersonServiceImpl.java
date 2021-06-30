@@ -1,6 +1,8 @@
 package com.mrgiovanotti.thirdparty.services.impl;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,12 @@ public class PersonServiceImpl implements PersonService {
 			return new PersonDTO(person.get());
 		}
 		return null;
+	}
+
+	@Override
+	public List<PersonDTO> findAll() {
+		List<Person> persons = personRepository.findAll();
+		return persons.stream().map(PersonDTO::new).collect(Collectors.toList());
 	}
 
 }

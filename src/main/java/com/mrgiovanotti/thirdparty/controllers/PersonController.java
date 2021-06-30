@@ -1,5 +1,7 @@
 package com.mrgiovanotti.thirdparty.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +23,14 @@ public class PersonController {
 		return personService.findById(id);
 	}
 
-	@GetMapping("/view/identification/{identifiationNumber}")
+	@GetMapping("/view/identification/{identificationNumber}")
 	public PersonDTO findPersonByIdentificationNumber(@PathVariable String identificationNumber) {
 		return personService.findByIdentificationNumber(identificationNumber);
+	}
+
+	@GetMapping("/list")
+	public List<PersonDTO> findAllPersons() {
+		return personService.findAll();
 	}
 
 }
